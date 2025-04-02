@@ -7,15 +7,27 @@ class HomeViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  Column(
-      children: [
-        CustomAppBar(
-
-        ),
-      ],
+    return  Padding(
+      padding: const EdgeInsets.all(12.0),
+      child: Column(
+        children: [
+          CustomAppBar(
+          ),
+          CustomListViewItem(),
+        ],
+      ),
     );
   }
 
+
+}
+class CustomListViewItem extends StatelessWidget {
+  const CustomListViewItem({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
+  }
 }
 
 

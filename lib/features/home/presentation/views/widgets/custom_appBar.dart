@@ -10,7 +10,8 @@ class CustomAppBar extends StatelessWidget {
     return  Row(
       children: [
 Image.asset(AssetsManager.logo,height: 20,),
-        IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.magnifyingGlass,size: 30,)),
+        Spacer(),
+        IconButton(onPressed: (){}, icon: Icon(FontAwesomeIcons.magnifyingGlass,size: 26,)),
       ],
     );
   }
