@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:go_router/go_router.dart';
-
 import '../../../../../core/utils/app_router.dart';
 import '../../../../../core/utils/assets_manager.dart';
 import '../../../../../core/utils/constants.dart';
 import '../../../../../core/utils/styles_manager.dart';
+import 'book_rating.dart';
 
-class BestSellerItem extends StatelessWidget {
-  const BestSellerItem({super.key});
+class BookListViewItem extends StatelessWidget {
+  const BookListViewItem({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -55,15 +54,7 @@ class BestSellerItem extends StatelessWidget {
                     children: [
                       Text('19.99 €',style: StylesManager.textStyle20.copyWith(fontWeight: FontWeight.bold),),
                       Spacer(),
-                      Icon(FontAwesomeIcons.solidStar,color: Colors.amber,),
-                      SizedBox(
-                        width: 6.3,
-                      ),
-                      Text('4.8',style: StylesManager.textStyle16,),
-                      SizedBox(
-                        width: 5,
-                      ),
-                      Text('(245)',style: StylesManager.textStyle14,)
+                      BookRating(),
                     ],
                   ),
 
