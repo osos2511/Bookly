@@ -1,6 +1,9 @@
 import 'Items.dart';
 
 class BookResponse {
+  String? kind;
+  num? totalItems;
+  List<Items>? items;
   BookResponse({
       this.kind, 
       this.totalItems, 
@@ -16,9 +19,7 @@ class BookResponse {
       });
     }
   }
-  String? kind;
-  num? totalItems;
-  List<Items>? items;
+
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
