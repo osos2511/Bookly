@@ -1,6 +1,6 @@
 import 'package:bookly/core/utils/styles_manager.dart';
 import 'package:flutter/material.dart';
-import 'best_seller_listView.dart';
+import 'newest_books_listView.dart';
 import 'custom_appBar.dart';
 import 'custom_featured_book_listView.dart';
 
@@ -20,13 +20,13 @@ class HomeViewBody extends StatelessWidget {
                 CustomAppBar(),
                 CustomFeaturedBooksListView(),
                 SizedBox(height: 16),
-                Text('Best Seller', style: StylesManager.textStyle18),
+                Text('Newest Books', style: StylesManager.textStyle18),
                 SizedBox(height: 16),
               ],
             ),
           ),
           SliverToBoxAdapter(
-            child: BestSellerListView(),
+            child: NewestBooksListView(),
           )
         ],
       ),

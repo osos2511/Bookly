@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../features/splash/presentation/views/splash_view.dart';
 
 class AppRouter{
+  static const kSplash='/';
   static const kHomeView='/homeView';
   static const kBookDetailsView='/kBookDetailsView';
   static const kSearchView='/kSearchView';
@@ -13,7 +14,7 @@ class AppRouter{
 
     routes: [
       GoRoute(
-        path: '/',
+        path: kSplash,
         builder: (context, state) => SplashView(),
       ),
       GoRoute(
