@@ -1,3 +1,4 @@
+import 'package:bookly/core/utils/constants.dart';
 import 'package:bookly/core/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -32,7 +33,7 @@ class BooksAction extends StatelessWidget {
                 bottomRight: Radius.circular(16.r),
                 topRight: Radius.circular(16.r),
               ),
-              backgroundColor: const Color(0xffEF8262),
+              backgroundColor: kAccentColor,
             ),
           ),
         ],

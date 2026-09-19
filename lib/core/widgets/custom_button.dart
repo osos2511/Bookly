@@ -9,6 +9,8 @@ class CustomButton extends StatelessWidget {
     this.borderRadius,
     required this.backgroundColor,
     required this.textColor,
+    this.onPressed,
+    this.isLoading = false,
   });
 
   final Color backgroundColor;
@@ -16,6 +18,8 @@ class CustomButton extends StatelessWidget {
   final BorderRadius? borderRadius;
   final String text;
   final double? fontSize;
+  final VoidCallback? onPressed;
+  final bool isLoading;
 
   @override
   Widget build(BuildContext context) {
@@ -24,23 +28,33 @@ class CustomButton extends StatelessWidget {
       child: TextButton(
         style: TextButton.styleFrom(
           backgroundColor: backgroundColor,
+          disabledBackgroundColor: backgroundColor.withValues(alpha: 0.6),
           padding: EdgeInsets.symmetric(horizontal: 12.w),
           shape: RoundedRectangleBorder(
             borderRadius: borderRadius ?? BorderRadius.circular(12.r),
           ),
         ),
-        onPressed: () {},
-        child: FittedBox(
-          fit: BoxFit.scaleDown,
-          child: Text(
-            text,
-            style: TextStyle(
-              color: textColor,
-              fontWeight: FontWeight.w900,
-              fontSize: (fontSize ?? 16).sp,
-            ),
-          ),
-        ),
+        onPressed: isLoading ? null : (onPressed ?? () {}),
+        child: isLoading
+            ? SizedBox(
+                height: 20.r,
+                width: 20.r,
+                child: CircularProgressIndicator(
+                  strokeWidth: 2.r,
+                  valueColor: AlwaysStoppedAnimation<Color>(textColor),
+                ),
+              )
+            : FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Text(
+                  text,
+                  style: TextStyle(
+                    color: textColor,
+                    fontWeight: FontWeight.w900,
+                    fontSize: (fontSize ?? 16).sp,
+                  ),
+                ),
+              ),
       ),
     );
   }
