@@ -18,8 +18,4 @@ class FeaturedBooksCubit extends Cubit<FeaturedBooksState> {
     });
 
   }
-
-
-
-
 }

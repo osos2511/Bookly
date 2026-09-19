@@ -1,15 +1,15 @@
 import 'package:dio/dio.dart';
 
-abstract class Failure{
+abstract class Failure {
   final String errorMessage;
   Failure(this.errorMessage);
-
 }
 
-class ServerFailure extends Failure{
+class ServerFailure extends Failure {
   ServerFailure(super.errorMessage);
-  factory ServerFailure.fromDioError(DioException dioException){
-    switch(dioException.type) {
+
+  factory ServerFailure.fromDioError(DioException dioException) {
+    switch (dioException.type) {
       case DioExceptionType.connectionTimeout:
         return ServerFailure('Connection Timeout with ApiServer');
 
@@ -20,32 +20,49 @@ class ServerFailure extends Failure{
         return ServerFailure('Receive Timeout with ApiServer');
 
       case DioExceptionType.badCertificate:
-        return ServerFailure('bad Certificate');
+        return ServerFailure('Bad Certificate');
+
       case DioExceptionType.badResponse:
-        return ServerFailure.fromResponse(dioException.response!.statusCode, dioException.response!.data);
+        return ServerFailure.fromResponse(
+          dioException.response?.statusCode,
+          dioException.response?.data,
+        );
+
       case DioExceptionType.cancel:
-      return ServerFailure('Request to ApiServer was Canceled');
+        return ServerFailure('Request to ApiServer was Canceled');
+
       case DioExceptionType.connectionError:
-        return ServerFailure('check internet connection');
+        return ServerFailure('No Internet Connection, please check your network');
+
       case DioExceptionType.unknown:
-        if(dioException.message!.contains('SocketException')){
-          return ServerFailure('unknown error');
+        if (dioException.message != null &&
+            dioException.message!.contains('SocketException')) {
+          return ServerFailure('No Internet Connection');
         }
-        return ServerFailure('error');
+        return ServerFailure('Unexpected error, Please try again!');
+
       default:
-        return ServerFailure('There was an error');
+        return ServerFailure('Opps There was an Error, Please try again');
     }
   }
-factory ServerFailure.fromResponse(int? statusCode,dynamic response){
-    if(statusCode==400||statusCode==401||statusCode==403){
-      return ServerFailure(response['error']['message']);
-    }else if(statusCode==404){
-      return ServerFailure('Your request Not found, please try later!');
-    }else if(statusCode==500){
-      return ServerFailure('Internal server error, please try later!');
-    }else{
-      return ServerFailure('There was an error, please try later!');
-    }
-}
 
-}
+  factory ServerFailure.fromResponse(int? statusCode, dynamic response) {
+    print('================ API ERROR LOG ================');
+    print('Status Code: $statusCode');
+    print('Response Data: $response');
+    print('===============================================');
+
+    if (statusCode == 400 || statusCode == 401 || statusCode == 403) {
+      try {
+        return ServerFailure(response['error']['message']);
+      } catch (_) {
+        return ServerFailure('Authentication or bad request error');
+      }
+    } else if (statusCode == 404) {
+      return ServerFailure('Your request was not found, please try later!');
+    } else if (statusCode == 500) {
+      return ServerFailure('Internal server error, please try later!');
+    } else {
+      return ServerFailure('Opps There was an Error, Please try again');
+    }
+  }}
