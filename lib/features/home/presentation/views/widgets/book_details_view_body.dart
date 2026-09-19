@@ -3,6 +3,7 @@ import 'package:bookly/features/home/presentation/views/widgets/book_rating.dart
 import 'package:bookly/features/home/presentation/views/widgets/custom_book_image.dart';
 import 'package:bookly/features/home/presentation/views/widgets/similar_books_list_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'books_action.dart';
 import 'custom_book_details_appBar.dart';
 
@@ -11,28 +12,28 @@ class BookDetailsViewBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var width = MediaQuery.of(context).size.width;
     return CustomScrollView(
       slivers: [
         SliverFillRemaining(
           hasScrollBody: false,
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20),
+            padding: EdgeInsets.symmetric(horizontal: 24.w),
             child: Column(
               children: [
-                CustomBookDetailsAppBar(),
+                const CustomBookDetailsAppBar(),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.2),
-                  child: CustomBookImage(imageUrl: '',),
+                  padding: EdgeInsets.symmetric(horizontal: 60.w),
+                  child: const CustomBookImage(imageUrl: ''),
                 ),
-                SizedBox(height: 43),
+                SizedBox(height: 36.h),
                 Text(
                   'The Jungle Book',
+                  textAlign: TextAlign.center,
                   style: StylesManager.textStyle30.copyWith(
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 6),
+                SizedBox(height: 8.h),
                 Opacity(
                   opacity: 0.7,
                   child: Text(
@@ -43,12 +44,13 @@ class BookDetailsViewBody extends StatelessWidget {
                     ),
                   ),
                 ),
+                SizedBox(height: 12.h),
                 const BookRating(
                   mainAxisAlignment: MainAxisAlignment.center,
                 ),
-                SizedBox(height: 37),
-                BooksAction(),
-                Expanded(child: SizedBox(height: 50)),
+                SizedBox(height: 32.h),
+                const BooksAction(),
+                Expanded(child: SizedBox(height: 40.h)),
                 Align(
                   alignment: Alignment.topLeft,
                   child: Text(
@@ -58,9 +60,9 @@ class BookDetailsViewBody extends StatelessWidget {
                     ),
                   ),
                 ),
-                SizedBox(height: 16),
-                SimilarBooksListView(),
-                SizedBox(height: 40),
+                SizedBox(height: 16.h),
+                const SimilarBooksListView(),
+                SizedBox(height: 32.h),
               ],
             ),
           ),

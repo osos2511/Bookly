@@ -3,6 +3,7 @@ import 'package:bookly/core/widgets/custom_loading_indicator.dart';
 import 'package:bookly/features/home/presentation/view_models/featured_books/featured_books_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'custom_book_image.dart';
 
@@ -15,13 +16,14 @@ class CustomFeaturedBooksListView extends StatelessWidget {
       builder: (context, state) {
         if (state is FeaturedBooksSuccess) {
           return SizedBox(
-            height: MediaQuery.of(context).size.height * 0.25,
+            height: 200.h,
             child: ListView.builder(
               itemCount: state.books.length,
               scrollDirection: Axis.horizontal,
+              padding: EdgeInsets.zero,
               itemBuilder: (context, index) {
                 return Padding(
-                  padding: const EdgeInsets.only(right: 10),
+                  padding: EdgeInsets.only(right: 12.w),
                   child: CustomBookImage(
                     imageUrl:
                         state.books[index].volumeInfo?.imageLinks?.thumbnail ??

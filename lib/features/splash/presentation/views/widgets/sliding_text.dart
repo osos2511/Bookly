@@ -1,7 +1,8 @@
+import 'package:bookly/core/utils/styles_manager.dart';
 import 'package:flutter/material.dart';
 
-class slidingText extends StatelessWidget {
-  const slidingText({
+class SlidingText extends StatelessWidget {
+  const SlidingText({
     super.key,
     required this.slidingAnimation,
   });
@@ -12,10 +13,15 @@ class slidingText extends StatelessWidget {
   Widget build(BuildContext context) {
     return AnimatedBuilder(
       animation: slidingAnimation,
-      builder: (context,_){
+      builder: (context, _) {
         return SlideTransition(
-            position: slidingAnimation,
-            child: Text('Read Free Books',textAlign: TextAlign.center,));
+          position: slidingAnimation,
+          child: Text(
+            'Read Free Books',
+            textAlign: TextAlign.center,
+            style: StylesManager.textStyle18,
+          ),
+        );
       },
     );
   }
